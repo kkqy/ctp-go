@@ -411,6 +411,9 @@ func (p *Gateway) OnRspUserLogin(pRspUserLogin ctp.CThostFtdcRspUserLoginField, 
 * 编译后的可执行文件依赖thostmduserapi_se.dll、thosttraderapi_se.dll、wrap.dll这三个动态链接库，这三个文件在包目录下Windows文件夹中可以找到（需要区分x86和x64版本），需要将这三个文件与可执行文件放在同一目录，才能正常运行，否则会出现“由于找不到 xxx.dll，无法继续执行代码。重新安装程序可能会解决此问题。”的错误。
 
 ## 常见问题
-### 为什么使用ctp-go以后我的程序编译那么慢？go build 等了好几分钟了。
+### 为什么使用ctp-go以后我的程序编译那么慢？
 首次构建的时候，ctp-go需要使用CGO进行编译，此时需要耗费较长时间，但仅仅只是首次比较慢，当再次构建的时候，Go的编译器就仅仅只会编译修改过的模块，而不需要再次编译ctp-go。个人实测，如果使用gcc编译器，首次构建最长可能花费10分钟左右，而如果替换成了LLVM/Clang，首次编译时间直接缩短为20秒不到，通过任务管理器可以对比，LLVM/Clang的CPU和内存利用率比gcc高出许多，所以，如果实在在意首次编译时间，不论是Windows还是Linux，都建议直接使用LLVM/Clang替代GCC作为编译器前端。
 LLVM/Clang编译速度比GCC快，且有更友好的错误提示。关于LLVM/Clang与GCC的说明、性能对比以及安装方法可参考网上其它教程，
+
+### 修改GOARCH为386以后，出现undefined: CThostFtdcRspUserLoginField等错误
+由于本包依赖CGO，所以需要将CGO_ENABLE设置为1。默认GOARCH下，CGO_ENABLE默认也是打开状态，但是在切换GOARCH为386，也就是编译32位的时候，CGO_ENABLE默认为关闭，需要手动设置为1。
