@@ -23,7 +23,7 @@ sudo yum install gcc
 sudo apt install clang 
 
 # RedHat系
-sudo yum install clang
+sudo yum install gcc gcc-c++ clang libstdc++-static
 
 # 通过修改环境变量CC指定clang作为编译器
 # export命令只会临时修改当前会话的环境变量，长久修改请自行修改系统或用户的profile文件。
