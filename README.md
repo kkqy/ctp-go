@@ -1,7 +1,7 @@
 # ctp-go
 上期技术期货交易协议CTP的Go版本，使用方法和C++基本一致。
 
-具体接口文档请参考上期CTP官方文档：http://www.sfit.com.cn/5_2_DocumentDown_2.htm （非工作时间可能无法访问）
+具体接口文档请参考上期CTP官方文档：https://www.simnow.com.cn/static/apiDownload.action （非工作时间可能无法访问）
 
 支持Windows(x86/x64)、Linux(x64)，虽然上期官方已经更新了MacOS版本，但是由于我没有Mac，所以暂时不支持。
 ctp-go基于Go 1.18，更早版本请自行修改mod文件测试看看是否可用。
@@ -44,6 +44,7 @@ llvm-mingw：https://github.com/mstorsjo/llvm-mingw/releases
 
 * 6.3.15
 * 6.6.7
+* 6.7.9
 
 安装的时候需要确定服务器使用的版本。
 
@@ -54,6 +55,10 @@ go get github.com/kkqy/ctp-go@6.3.15
 如果柜台要求是6.6.7版本，那么就安装6.6.7：
 ```
 go get github.com/kkqy/ctp-go@6.6.7
+```
+如果柜台要求是6.7.9版本，那么就安装6.7.9：
+```
+go get github.com/kkqy/ctp-go@6.7.9
 ```
 
 一般小版本是能兼容的。
